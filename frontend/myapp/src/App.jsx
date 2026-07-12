@@ -37,7 +37,11 @@ function handlefile(event){
 }
 function send(){
   setsatuts(true)
-   axios.post("https://bulkmail-1-rsbg.onrender.com/sendmail",{msg:msg,emailList:emailList})
+  const apiBaseUrl = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3000"
+    : "https://bulkmail-1-rsbg.onrender.com";
+
+   axios.post(`${apiBaseUrl}/sendmail`,{msg:msg,emailList:emailList})
    .then(function(data){
      if(data.data === true){
       alert("மெயில் வெற்றியாக அனுப்பப்பட்டது.✅")
@@ -45,6 +49,7 @@ function send(){
      }
      else{
       alert("மெயில் அனுப்ப முடியவில்லை. ❌")
+      setsatuts(false)
      }
    })
    .catch(function(error){
