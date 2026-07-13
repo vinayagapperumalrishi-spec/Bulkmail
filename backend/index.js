@@ -33,9 +33,6 @@ app.post("/sendmail",function(req,res){
         user:data[0].toJSON().user,
         pass:data[0].toJSON().pass,
     },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
 })
 new Promise(async function(resolve,reject){
        try{
@@ -66,7 +63,6 @@ new Promise(async function(resolve,reject){
 
 }).catch(function(error){
   console.log(error)
-  res.send(false)
 })
     console.log(msg)
 
