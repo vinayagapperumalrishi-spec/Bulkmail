@@ -35,12 +35,17 @@ app.post("/sendmail", async (req, res) => {
 
     console.log("MongoDB data:", data);
 
-    const transporter = nodemailer.createTransport({
-  service: "gmail",
+   const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: data[0].toJSON().user,
+    pass: data[0].toJSON().pass,
   },
+  connectionTimeout: 30000,
+  greetingTimeout: 30000,
+  socketTimeout: 30000,
 });
 
     await transporter.verify();
