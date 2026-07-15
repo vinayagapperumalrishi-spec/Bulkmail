@@ -39,9 +39,13 @@ app.post("/sendmail", async (req, res) => {
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
+  family: 4,
   auth: {
-    user: data.user,
-    pass: data.pass,
+    user: data[0].toJSON().user,
+    pass: data[0].toJSON().pass,
+  },
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 
