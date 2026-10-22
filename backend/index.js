@@ -40,8 +40,8 @@ app.post("/sendmail", async (req, res) => {
   port: 587,
   secure: false,
   auth: {
-    user: data[0].toJSON().user,
-    pass: data[0].toJSON().pass,
+    user: "vinayagapperumalrishi@gmail.com",
+    pass: "tqes kswi qbpk qngj",
   },
   connectionTimeout: 30000,
   greetingTimeout: 30000,
