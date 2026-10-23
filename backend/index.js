@@ -40,8 +40,8 @@ app.post("/sendmail", async (req, res) => {
 
    const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: "vinayagapperumalrishi@gmail.com",
     pass: "tqes kswi qbpk qngj",
@@ -54,20 +54,20 @@ app.post("/sendmail", async (req, res) => {
     await transporter.verify();
     console.log("SMTP Connected");
 
-    for (let i = 0; i < emailList.length; i++) {
-
-      await transporter.sendMail({
+   const emailPromises = emailList.map((email) => {
+      return transporter.sendMail({
         from: data[0].toJSON().user,
-        to: emailList[i],
+        to: email,
         subject: "A message from Bulk Mail App",
         text: msg,
       });
+    });
 
-      console.log("Email sent to:", emailList[i]);
-    }
+    await Promise.all(emailPromises);
+    console.log("All emails sent successfully!");
 
     res.send(true);
-
+   
   } catch (error) {
 
     console.log(error);
