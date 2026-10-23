@@ -20,6 +20,9 @@ mongoose.connect(
 });
 
 const Credential = mongoose.model("credential", {}, "bulkmail");
+app.get("/", (req, res) => {
+  res.send("Bulk Mail Backend Server is running successfully! 🚀");
+});
 
 app.post("/sendmail", async (req, res) => {
 
@@ -76,6 +79,10 @@ app.post("/sendmail", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server Started on ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server Started on ${PORT}`);
+  });
+}
+
+module.exports = app;
