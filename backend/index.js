@@ -72,7 +72,7 @@ app.post("/sendmail", async (req, res) => {
 
   } catch (error) {
     console.log("Error details:", error);
-    res.send(false);
+    res.status(500).send(error.message); 
   }
 });
 

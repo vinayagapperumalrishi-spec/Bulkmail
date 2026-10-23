@@ -63,7 +63,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        alert("Server Error ❌");
+       alert("Error: " + (err.response?.data || err.message));
       })
       .finally(() => {
         setstatus(false);
