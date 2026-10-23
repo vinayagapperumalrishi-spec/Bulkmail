@@ -20,6 +20,8 @@ mongoose.connect(
 });
 
 const Credential = mongoose.model("credential", {}, "bulkmail");
+const data = await Credential.find();
+if (data.length === 0) { return res.send(false); }
 app.get("/", (req, res) => {
   res.send("Bulk Mail Backend Server is running successfully! 🚀");
 });
