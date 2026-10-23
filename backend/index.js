@@ -31,7 +31,11 @@ app.post("/sendmail", async (req, res) => {
   const { msg, emailList } = req.body;
 
   try {
-
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(
+        "mongodb+srv://rishi:12345@cluster0.u5j4gv2.mongodb.net/passkey?retryWrites=true&w=majority&appName=Cluster0"
+      );
+    }
     const data = await Credential.find();
 
     if (data.length === 0) {
@@ -72,7 +76,7 @@ app.post("/sendmail", async (req, res) => {
    
   } catch (error) {
 
-    console.log(error);
+  console.log("Error details:", error);
     res.send(false);
 
   }
