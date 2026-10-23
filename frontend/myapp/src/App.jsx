@@ -54,7 +54,7 @@ function App() {
 
     setstatus(true);
 
-    axios.post("https://bulkmail-seven-roan.vercel.app/sendmail", {msg,emailList,}).then((res) => {
+    axios.post("https://bulkmail-pi-one.vercel.app/sendmail", {msg,emailList,}).then((res) => {
        if (res.data === "SUCCESS" || res.data === true) {
           alert("மெயில் வெற்றியாக அனுப்பப்பட்டது.✅");
         } else {
